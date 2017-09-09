@@ -2,3 +2,5 @@
 packages/
 MemoryFiller/bin/
 MemoryFiller/obj/
+MemoryFiller.Tests/bin/
+MemoryFiller.Tests/obj/
