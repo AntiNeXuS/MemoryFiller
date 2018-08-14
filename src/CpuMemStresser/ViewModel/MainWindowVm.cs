@@ -11,9 +11,6 @@ namespace CpuMemStresser.ViewModel
     {
         private readonly double _totalRam;
         private double _availableRam;
-        private int _useRamPercentage;
-
-        private readonly Timer _timer;
 
         private readonly IComputerMemoryProvider _computerMemoryProvider;
         private readonly IMemoryFiller _memoryFiller;
@@ -28,9 +25,9 @@ namespace CpuMemStresser.ViewModel
             _totalRam = computerMemoryProvider.TotalMemorySize;
 
             _memoryFiller = memoryFiller;
-            _timer = new Timer(500);
-            _timer.Elapsed += (sender, args) => { UpdateUi(); };
-            _timer.Start();
+            var timer = new Timer(500);
+            timer.Elapsed += (sender, args) => { UpdateUi(); };
+            timer.Start();
 
             UpdateUi();
         }
@@ -71,7 +68,7 @@ namespace CpuMemStresser.ViewModel
 
         private bool IncreaseOnOneGbCanExecute()
         {
-            return _memoryFiller.CanFill && _availableRam > 1024;
+            return _memoryFiller.CanFill && _availableRam > gbSize;
         }
 
         private void IncreaseOnOneGbExecute()
@@ -83,7 +80,7 @@ namespace CpuMemStresser.ViewModel
 
         private bool IncreaseOn128MbCanExecute()
         {
-            return _memoryFiller.CanFill && _availableRam > 128;
+            return _memoryFiller.CanFill && _availableRam > oteSize;
         }
 
         private void IncreaseOn128MbExecute()

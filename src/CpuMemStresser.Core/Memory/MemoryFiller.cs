@@ -12,7 +12,7 @@ namespace CpuMemStresser.Core.Memory
 
         public int PieceSize { get; }
 
-        public bool CanFill => _outOfMemory == false;
+        public bool CanFill => !_outOfMemory;
         public bool IsEmpty => _memory.IsEmpty;
 
         public long UsedMemory => _memory.Count * (long)PieceSize;
@@ -35,9 +35,10 @@ namespace CpuMemStresser.Core.Memory
             }
         }
 
-        public MemoryFiller(int pieceSize)
+        public MemoryFiller(int pieceSize, bool isFillNeeded = true)
         {
             PieceSize = pieceSize;
+            IsFillNeeded = isFillNeeded;
         }
 
         public void FillAsync(long size)
@@ -49,7 +50,7 @@ namespace CpuMemStresser.Core.Memory
                 {
                     _memory.Push(new PieceOfMemory(PieceSize, IsFillNeeded));
                 }
-                catch (OutOfMemoryException e)
+                catch (OutOfMemoryException)
                 {
                     _outOfMemory = true;
                     break;
