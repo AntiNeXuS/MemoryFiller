@@ -7,3 +7,5 @@ MemoryFiller.Tests/obj/
 bin/
 src/CpuMemStresser/obj/
 src/CpuMemStresser.Tests/obj/
+src/CpuMemStresser.Core/obj/
+*.user

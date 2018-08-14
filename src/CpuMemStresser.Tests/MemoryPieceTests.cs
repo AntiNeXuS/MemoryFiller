@@ -1,4 +1,5 @@
-﻿using CpuMemStresser.Models;
+﻿using CpuMemStresser.Core;
+using CpuMemStresser.Core.Memory;
 using NUnit.Framework;
 
 namespace CpuMemStresser.Tests
@@ -9,7 +10,7 @@ namespace CpuMemStresser.Tests
         [Test]
         public void CreateTest()
         {
-            var piece = new MemoryPiece(size: 1024, fill: false);
+            var piece = new PieceOfMemory(size: 1024, fill: false);
             Assert.NotNull(piece);
             piece.Dispose();
         }

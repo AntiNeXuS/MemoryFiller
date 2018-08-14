@@ -75,8 +75,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Filler.cs" />
-    <Compile Include="Models\MemoryPiece.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="mainIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CpuMemStresser.Core\CpuMemStresser.Core.csproj">
+      <Project>{6C831BBA-172A-43DB-BB2D-5C1A0BFA64AD}</Project>
+      <Name>CpuMemStresser.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

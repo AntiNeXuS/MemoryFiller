@@ -2,17 +2,18 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace CpuMemStresser.Models
+namespace CpuMemStresser.Core.Memory
 {
-    public class MemoryPiece : IDisposable
+    public class PieceOfMemory : IDisposable
     {
-        public int Size { get; }
-        public bool Fill { get; }
-
         private readonly MemoryStream _memory;
         private readonly Task _fillTask;
 
-        public MemoryPiece(int size, bool fill)
+        public int Size { get; }
+
+        public bool Fill { get; }
+
+        public PieceOfMemory(int size, bool fill)
         {
             Size = size;
             Fill = fill;

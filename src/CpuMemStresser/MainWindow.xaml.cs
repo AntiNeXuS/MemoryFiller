@@ -11,7 +11,10 @@ namespace CpuMemStresser
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVm();
+
+            var memoryFiller = new Core.Memory.MemoryFiller(pieceSize: 64 * 1024 * 1024);
+
+            DataContext = new MainWindowVm(memoryFiller);
         }
     }
 }
