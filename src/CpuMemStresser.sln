@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser", "MemoryFiller\CpuMemStresser.csproj", "{D95CF444-FAD8-439B-B06D-B575BACCA056}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser", "CpuMemStresser\CpuMemStresser.csproj", "{D95CF444-FAD8-439B-B06D-B575BACCA056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser.Tests", "MemoryFiller.Tests\CpuMemStresser.Tests.csproj", "{32DDBEE9-4310-4803-855C-24F5A988CA77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser.Tests", "CpuMemStresser.Tests\CpuMemStresser.Tests.csproj", "{32DDBEE9-4310-4803-855C-24F5A988CA77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,3 +4,6 @@ MemoryFiller/bin/
 MemoryFiller/obj/
 MemoryFiller.Tests/bin/
 MemoryFiller.Tests/obj/
+bin/
+src/CpuMemStresser/obj/
+src/CpuMemStresser.Tests/obj/
