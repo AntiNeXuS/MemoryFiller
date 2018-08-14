@@ -1,31 +1,32 @@
-﻿// \***************************************************************************/
-// Solution:           MemoryFiller
-// Project:            MemoryFiller
-// Filename:           Filler.cs
-// Created:            09.09.2017
-// \***************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using MemoryFiller.Models;
 
-namespace MemoryFiller
+namespace CpuMemStresser.Core.Memory
 {
-    public class Filler
+    public class MemoryFiller : IMemoryFiller
     {
+        private readonly ConcurrentStack<PieceOfMemory> _memory = new ConcurrentStack<PieceOfMemory>();
+        private bool _outOfMemory;
+        private bool _isFillNeeded;
+
         public int PieceSize { get; }
 
-        public bool Fill
+        public bool CanFill => _outOfMemory == false;
+        public bool IsEmpty => _memory.IsEmpty;
+
+        public long UsedMemory => _memory.Count * (long)PieceSize;
+
+        public bool IsFillNeeded
         {
-            get { return _fill; }
+            get { return _isFillNeeded; }
             set
             {
-                if (_fill == value) return;
+                if (_isFillNeeded == value) return;
 
-                _fill = value;
+                _isFillNeeded = value;
 
-                if (_fill == true)
+                if (_isFillNeeded)
                 {
                     var usedMemory = UsedMemory;
                     Empty();
@@ -34,16 +35,7 @@ namespace MemoryFiller
             }
         }
 
-        public bool CanFill => _outOfMemory == false;
-        public bool IsEmpty => _memory.IsEmpty;
-
-        public long UsedMemory => _memory.Count * (long) PieceSize;
-
-        private readonly ConcurrentStack<MemoryPiece> _memory = new ConcurrentStack<MemoryPiece>();
-        private bool _outOfMemory;
-        private bool _fill;
-
-        public Filler(int pieceSize)
+        public MemoryFiller(int pieceSize)
         {
             PieceSize = pieceSize;
         }
@@ -55,7 +47,7 @@ namespace MemoryFiller
             {
                 try
                 {
-                    _memory.Push(new MemoryPiece(PieceSize, Fill));
+                    _memory.Push(new PieceOfMemory(PieceSize, IsFillNeeded));
                 }
                 catch (OutOfMemoryException e)
                 {
@@ -70,8 +62,7 @@ namespace MemoryFiller
             var pieceCount = SizeToPieceCount(size, PieceSize);
             while (_memory.Any() && pieceCount > 0)
             {
-                MemoryPiece piece;
-                if (_memory.TryPop(out piece))
+                if (_memory.TryPop(out var piece))
                 {
                     piece.Dispose();
                     pieceCount--;
@@ -84,8 +75,7 @@ namespace MemoryFiller
         {
             while (_memory.Any())
             {
-                MemoryPiece piece;
-                if (_memory.TryPop(out piece))
+                if (_memory.TryPop(out var piece))
                 {
                     piece.Dispose();
                     _outOfMemory = false;
@@ -95,9 +85,7 @@ namespace MemoryFiller
 
         public static int SizeToPieceCount(long size, int pieceSize)
         {
-            var count = Convert.ToInt32(size / pieceSize);
-
-            return count;
+            return Convert.ToInt32(size / pieceSize);
         }
     }
 }

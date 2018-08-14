@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Timers;
 using System.Windows.Input;
+using CpuMemStresser.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-namespace MemoryFiller.ViewModel
+namespace CpuMemStresser.ViewModel
 {
     public class MainWindowVm : ViewModelBase
     {
@@ -17,18 +17,18 @@ namespace MemoryFiller.ViewModel
 
         private readonly Timer _timer;
 
-        private Filler _filler;
+        private readonly IMemoryFiller _memoryFiller;
 
         const int gbSize = 1024 * 1024 * 1024;
         const int oteSize = 128 * 1024 * 1024;
 
-        public MainWindowVm()
+        public MainWindowVm(IMemoryFiller memoryFiller)
         {
             _ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
 
             _totalRam = new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory / 1024d / 1024d;
 
-            _filler = new Filler(pieceSize:64*1024*1024);
+            _memoryFiller = memoryFiller;
             _timer = new Timer(500);
             _timer.Elapsed += (sender, args) => { UpdateUi(); };
             _timer.Start();
@@ -58,64 +58,64 @@ namespace MemoryFiller.ViewModel
 
         public string ApplicationMemory
         {
-            get { return $"{_filler.UsedMemory / 1024d / 1024d :F2} Mb / {_filler.UsedMemory / 1024d / 1024d / 1024d :F2} Gb"; }
+            get { return $"{_memoryFiller.UsedMemory / 1024d / 1024d :F2} Mb / {_memoryFiller.UsedMemory / 1024d / 1024d / 1024d :F2} Gb"; }
             set { }
         }
 
         public bool FillMemory
         {
-            get { return _filler.Fill; }
-            set { _filler.Fill = value; }
+            get { return _memoryFiller.IsFillNeeded; }
+            set { _memoryFiller.IsFillNeeded = value; }
         }
 
         public ICommand IncreaseOnOneGbCommand => new RelayCommand(IncreaseOnOneGbExecute, IncreaseOnOneGbCanExecute);
 
         private bool IncreaseOnOneGbCanExecute()
         {
-            return _filler.CanFill && _availableRam > 1024;
+            return _memoryFiller.CanFill && _availableRam > 1024;
         }
 
         private void IncreaseOnOneGbExecute()
         {
-            _filler.FillAsync(gbSize);
+            _memoryFiller.FillAsync(gbSize);
         }
 
         public ICommand IncreaseOn128MbCommand => new RelayCommand(IncreaseOn128MbExecute, IncreaseOn128MbCanExecute);
 
         private bool IncreaseOn128MbCanExecute()
         {
-            return _filler.CanFill && _availableRam > 128;
+            return _memoryFiller.CanFill && _availableRam > 128;
         }
 
         private void IncreaseOn128MbExecute()
         {
-            _filler.FillAsync(oteSize);
+            _memoryFiller.FillAsync(oteSize);
         }
 
         public ICommand DecreaseOnOneGbCommand => new RelayCommand(DecreaseOnOneGbExecute, DecreaseCanExecute);
 
         private void DecreaseOnOneGbExecute()
         {
-            _filler.Empty(gbSize);
+            _memoryFiller.Empty(gbSize);
         }
 
         public ICommand DecreaseOn128MbCommand => new RelayCommand(DecreaseOn128MbExecute, DecreaseCanExecute);
 
         private void DecreaseOn128MbExecute()
         {
-            _filler.Empty(oteSize);
+            _memoryFiller.Empty(oteSize);
         }
 
         public ICommand FreeAllCommand => new RelayCommand(FreeAllExecute, DecreaseCanExecute);
 
         private void FreeAllExecute()
         {
-            _filler.Empty();
+            _memoryFiller.Empty();
         }
 
         private bool DecreaseCanExecute()
         {
-            return !_filler.IsEmpty;
+            return !_memoryFiller.IsEmpty;
         }
     }
 }

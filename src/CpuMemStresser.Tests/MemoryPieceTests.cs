@@ -1,7 +1,8 @@
-﻿using MemoryFiller.Models;
+﻿using CpuMemStresser.Core;
+using CpuMemStresser.Core.Memory;
 using NUnit.Framework;
 
-namespace MemoryFiller.Tests
+namespace CpuMemStresser.Tests
 {
     [TestFixture]
     public class MemoryPieceTests
@@ -9,10 +10,9 @@ namespace MemoryFiller.Tests
         [Test]
         public void CreateTest()
         {
-            var piece = new MemoryPiece(size: 1024, fill: false);
+            var piece = new PieceOfMemory(size: 1024, fill: false);
             Assert.NotNull(piece);
-            if (piece != null)
-                piece.Dispose();
+            piece.Dispose();
         }
     }
 }

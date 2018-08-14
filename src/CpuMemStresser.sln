@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryFiller", "MemoryFiller\MemoryFiller.csproj", "{D95CF444-FAD8-439B-B06D-B575BACCA056}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser", "CpuMemStresser\CpuMemStresser.csproj", "{D95CF444-FAD8-439B-B06D-B575BACCA056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryFiller.Tests", "MemoryFiller.Tests\MemoryFiller.Tests.csproj", "{32DDBEE9-4310-4803-855C-24F5A988CA77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser.Tests", "CpuMemStresser.Tests\CpuMemStresser.Tests.csproj", "{32DDBEE9-4310-4803-855C-24F5A988CA77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpuMemStresser.Core", "CpuMemStresser.Core\CpuMemStresser.Core.csproj", "{6C831BBA-172A-43DB-BB2D-5C1A0BFA64AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{32DDBEE9-4310-4803-855C-24F5A988CA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32DDBEE9-4310-4803-855C-24F5A988CA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32DDBEE9-4310-4803-855C-24F5A988CA77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C831BBA-172A-43DB-BB2D-5C1A0BFA64AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C831BBA-172A-43DB-BB2D-5C1A0BFA64AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C831BBA-172A-43DB-BB2D-5C1A0BFA64AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C831BBA-172A-43DB-BB2D-5C1A0BFA64AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
