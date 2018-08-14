@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\MemorySizeExtensions.cs" />
+    <Compile Include="IComputerMemoryProvider.cs" />
     <Compile Include="IMemoryFiller.cs" />
+    <Compile Include="Memory\ComputerMemoryProvider.cs" />
     <Compile Include="Memory\MemoryFiller.cs" />
     <Compile Include="Memory\PieceOfMemory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

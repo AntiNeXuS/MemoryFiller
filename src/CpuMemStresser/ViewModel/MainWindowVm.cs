@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.Timers;
+﻿using System.Timers;
 using System.Windows.Input;
 using CpuMemStresser.Core;
+using CpuMemStresser.Core.Extensions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -13,20 +12,20 @@ namespace CpuMemStresser.ViewModel
         private readonly double _totalRam;
         private double _availableRam;
         private int _useRamPercentage;
-        private readonly PerformanceCounter _ramCounter;
 
         private readonly Timer _timer;
 
+        private readonly IComputerMemoryProvider _computerMemoryProvider;
         private readonly IMemoryFiller _memoryFiller;
-
+        
         const int gbSize = 1024 * 1024 * 1024;
         const int oteSize = 128 * 1024 * 1024;
 
-        public MainWindowVm(IMemoryFiller memoryFiller)
+        public MainWindowVm(IComputerMemoryProvider computerMemoryProvider, IMemoryFiller memoryFiller)
         {
-            _ramCounter = new PerformanceCounter("Memory", "Available MBytes", true);
+            _computerMemoryProvider = computerMemoryProvider;
 
-            _totalRam = new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory / 1024d / 1024d;
+            _totalRam = computerMemoryProvider.TotalMemorySize;
 
             _memoryFiller = memoryFiller;
             _timer = new Timer(500);
@@ -38,27 +37,27 @@ namespace CpuMemStresser.ViewModel
 
         private void UpdateUi()
         {
-            _availableRam = Convert.ToInt32(_ramCounter.NextValue());
+            _availableRam = _computerMemoryProvider.AvailableMemorySize;
             RaisePropertyChanged(() => TotalRam);
             RaisePropertyChanged(() => AvailableRam);
             RaisePropertyChanged(() => ApplicationMemory);
         }
 
-        public string AvailableRam
+        public string TotalRam
         {
-            get { return $"{_availableRam :F2} Mb / {_availableRam / 1024d :F2} Gb"; }
+            get { return $"{_totalRam.ToMb() :F2} Mb / {_totalRam.ToGb() :F2} Gb"; }
             set { }
         }
 
-        public string TotalRam
+        public string AvailableRam
         {
-            get { return $"{_totalRam :F2} Mb / {_totalRam / 1024d :F2} Gb"; }
+            get { return $"{_availableRam.ToMb() :F2} Mb / {_availableRam.ToGb() :F2} Gb"; }
             set { }
         }
 
         public string ApplicationMemory
         {
-            get { return $"{_memoryFiller.UsedMemory / 1024d / 1024d :F2} Mb / {_memoryFiller.UsedMemory / 1024d / 1024d / 1024d :F2} Gb"; }
+            get { return $"{_memoryFiller.UsedMemory.ToMb() :F2} Mb / {_memoryFiller.UsedMemory.ToGb() :F2} Gb"; }
             set { }
         }
 
