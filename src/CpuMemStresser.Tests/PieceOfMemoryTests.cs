@@ -1,11 +1,10 @@
-﻿using CpuMemStresser.Core;
-using CpuMemStresser.Core.Memory;
+﻿using CpuMemStresser.Core.Memory;
 using NUnit.Framework;
 
 namespace CpuMemStresser.Tests
 {
     [TestFixture]
-    public class MemoryPieceTests
+    public class PieceOfMemoryTests
     {
         [Test]
         public void CreateTest()

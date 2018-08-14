@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CpuMemStresser.Core.Memory;
 using CpuMemStresser.ViewModel;
 
 namespace CpuMemStresser
@@ -13,8 +14,9 @@ namespace CpuMemStresser
             InitializeComponent();
 
             var memoryFiller = new Core.Memory.MemoryFiller(pieceSize: 64 * 1024 * 1024);
+            var computerMemoryProvider = new ComputerMemoryProvider();
 
-            DataContext = new MainWindowVm(memoryFiller);
+            DataContext = new MainWindowVm(computerMemoryProvider, memoryFiller);
         }
     }
 }

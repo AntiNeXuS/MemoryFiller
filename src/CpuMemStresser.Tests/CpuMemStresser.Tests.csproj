@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MemoryFillerTests.cs" />
-    <Compile Include="MemoryPieceTests.cs" />
+    <Compile Include="PieceOfMemoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
