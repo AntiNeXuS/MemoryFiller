@@ -1,15 +1,8 @@
-﻿// \***************************************************************************/
-// Solution:           MemoryFiller
-// Project:            MemoryFiller
-// Filename:           MemoryPiece.cs
-// Created:            09.09.2017
-// \***************************************************************************/
-
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MemoryFiller.Models
+namespace CpuMemStresser.Models
 {
     public class MemoryPiece : IDisposable
     {

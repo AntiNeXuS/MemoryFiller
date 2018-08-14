@@ -1,13 +1,6 @@
-﻿// \***************************************************************************/
-// Solution:           MemoryFiller
-// Project:            MemoryFiller.Tests
-// Filename:           FillerTests.cs
-// Created:            09.09.2017
-// \***************************************************************************/
+﻿using NUnit.Framework;
 
-using NUnit.Framework;
-
-namespace MemoryFiller.Tests
+namespace CpuMemStresser.Tests
 {
     [TestFixture]
     public class FillerTests

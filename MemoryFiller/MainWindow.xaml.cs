@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using MemoryFiller.ViewModel;
+using CpuMemStresser.ViewModel;
 
-namespace MemoryFiller
+namespace CpuMemStresser
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

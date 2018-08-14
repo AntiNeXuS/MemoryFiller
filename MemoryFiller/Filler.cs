@@ -8,9 +8,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using MemoryFiller.Models;
+using CpuMemStresser.Models;
 
-namespace MemoryFiller
+namespace CpuMemStresser
 {
     public class Filler
     {

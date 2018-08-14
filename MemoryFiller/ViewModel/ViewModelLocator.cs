@@ -1,3 +1,4 @@
+using CpuMemStresser.ViewModel;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 

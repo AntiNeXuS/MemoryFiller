@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Timers;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-namespace MemoryFiller.ViewModel
+namespace CpuMemStresser.ViewModel
 {
     public class MainWindowVm : ViewModelBase
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{32DDBEE9-4310-4803-855C-24F5A988CA77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MemoryFiller.Tests</RootNamespace>
-    <AssemblyName>MemoryFiller.Tests</AssemblyName>
+    <RootNamespace>CpuMemStresser.Tests</RootNamespace>
+    <AssemblyName>CpuMemStresser.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,9 +51,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryFiller\MemoryFiller.csproj">
+    <ProjectReference Include="..\MemoryFiller\CpuMemStresser.csproj">
       <Project>{D95CF444-FAD8-439B-B06D-B575BACCA056}</Project>
-      <Name>MemoryFiller</Name>
+      <Name>CpuMemStresser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
