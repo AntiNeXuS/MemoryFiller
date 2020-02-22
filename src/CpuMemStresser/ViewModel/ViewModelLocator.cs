@@ -1,6 +1,6 @@
+using CommonServiceLocator;
 using CpuMemStresser.ViewModel;
 using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
 
 namespace MemoryFiller.ViewModel
 {
