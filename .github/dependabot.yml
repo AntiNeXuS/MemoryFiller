@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "23:00"
+  open-pull-requests-limit: 10
+  assignees:
+  - VitalyTartynov
+  ignore:
+  - dependency-name: NUnit
+    versions:
+    - 3.13.0
